@@ -1,20 +1,102 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-toolbar color="transparent" class="header">
+    <ion-icon (click)="menuOpen()" slot="start" src="assets/menu.svg" style="font-size: 20px;">
+    </ion-icon>
   </ion-toolbar>
-</ion-header>
+  <ion-row class="header">
+    <ion-col>
+      <h1> My Day </h1>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="2">
+      <ion-button mode="ios" color="transparent" (click)="prevDate()">
+        <ion-icon slot="icon-only" color="primary" name="caret-back"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="7" class="ion-text-center ion-text-wrap">
+      <ion-datetime class="ion-padding" displayFormat="MMMM DD YYYY" (ionChange)="getTaskList()" [(ngModel)]="date">
+      </ion-datetime>
+    </ion-col>
+    <ion-col size="2">
+      <ion-button mode="ios" color="transparent" (click)="nextDate()">
+        <ion-icon slot="icon-only" color="primary" name="caret-forward"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-segment class="segment" mode="md" [(ngModel)]="segment" (ionChange)="getTaskList()">
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="completed">
+      <ion-label>Completed</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="incompleted">
+      <ion-label>Incompleted</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div [ngClass]="tasklist.length > 0 ? 'common': 'common segment-all'" *ngIf="segment=='all'">
+    <ion-list mode="ios" class="tasklist" color="transparent" *ngFor="let task of tasklist,let i=index">
+      <ion-card class="task-card ion-no-margin">
+        <ion-item lines="none">
+          <ion-checkbox mode="md" *ngIf="task.completed=='1'" (click)="statusChange(task)" checked></ion-checkbox>
+          <ion-checkbox mode="md" *ngIf="task.completed=='0'" (click)="statusChange(task)"></ion-checkbox>
+          <ion-label class="task-label ion-text-capitalize ion-text-nowrap">
+            <h3 class="ion-text-dark" *ngIf="task.completed=='1'"><b
+                style="text-decoration: line-through;">{{task.task_name}}</b></h3>
+            <h3 class="ion-text-dark" *ngIf="task.completed=='0'"><b>{{task.task_name}}</b></h3>
+            <p> {{task.priority}}</p>
+          </ion-label>
+          <ion-icon color="medium" slot="end" name="star"></ion-icon>
+          <ion-icon color="medium" slot="end" name="close"></ion-icon>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+  </div>
+  <div [ngClass]="completedTasks.length > 0 ? 'common': 'common segment-completed'" *ngIf="segment=='completed'">
+    <ion-list mode="ios" class="tasklist" color="transparent" *ngFor="let task of completedTasks,let i=index">
+      <ion-card class="task-card ion-no-margin">
+        <ion-item lines="none">
+          <ion-checkbox mode="md" *ngIf="task.completed=='1'" (click)="statusChange(task)" checked></ion-checkbox>
+          <ion-checkbox mode="md" *ngIf="task.completed=='0'" (click)="statusChange(task)"></ion-checkbox>
+          <ion-label class="task-label ion-text-capitalize ion-text-nowrap">
+            <h3 class="ion-text-dark" *ngIf="task.completed=='1'"><b
+                style="text-decoration: line-through;">{{task.task_name}}</b></h3>
+            <h3 class="ion-text-dark" *ngIf="task.completed=='0'"><b>{{task.task_name}}</b></h3>
+            <p> {{task.priority}}</p>
+          </ion-label>
+          <ion-icon color="medium" slot="end" name="star"></ion-icon>
+          <ion-icon color="medium" slot="end" name="close"></ion-icon>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+  </div>
+  <div [ngClass]="incompletedTasks.length > 0 ? 'common': 'common segment-incompleted'" *ngIf="segment=='incompleted'">
+    <ion-list mode="ios" class="tasklist" color="transparent" *ngFor="let task of incompletedTasks,let i=index">
+      <ion-card class="task-card ion-no-margin">
+        <ion-item lines="none">
+          <ion-checkbox mode="md" *ngIf="task.completed=='1'" (click)="statusChange(task)" checked></ion-checkbox>
+          <ion-checkbox mode="md" *ngIf="task.completed=='0'" (click)="statusChange(task)"></ion-checkbox>
+          <ion-label class="task-label ion-text-capitalize ion-text-nowrap">
+            <h3 class="ion-text-dark" *ngIf="task.completed=='1'"><b
+                style="text-decoration: line-through;">{{task.task_name}}</b></h3>
+            <h3 class="ion-text-dark" *ngIf="task.completed=='0'"><b>{{task.task_name}}</b></h3>
+            <p> {{task.priority}}</p>
+          </ion-label>
+          <ion-icon color="medium" slot="end" name="star"></ion-icon>
+          <ion-icon color="medium" slot="end" name="close"></ion-icon>
+        </ion-item>
+      </ion-card>
+    </ion-list>
   </div>
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-button class="task-button" (click)="addTaskModal()">
+    <ion-icon slot="start" name="add"></ion-icon>
+    <ion-text class="ion-text-capitalize">
+      Create Task
+    </ion-text>
+  </ion-button>
+</ion-footer>

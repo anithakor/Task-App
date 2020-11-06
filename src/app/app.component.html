@@ -1,3 +1,23 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu  side="start" menuId="first" type="push" content-id="content">
+    <ion-content>
+      <ion-toolbar class="ion-text-center ion-padding" mode="md">
+        <ion-avatar style="margin: auto;">
+          <img [src]="user && user.photoURL? user.photoURL:'assets/user.png'">
+        </ion-avatar>
+        <ion-title class="ion-text-capitalize">{{user && user.displayName ? user.displayName :''}}</ion-title>
+      </ion-toolbar>
+      <ion-list>
+        <ion-item (click)="openPage('home')">
+          <ion-icon name="home" slot="start" style="color: white;"></ion-icon>
+          Home
+        </ion-item>
+        <ion-item (click)="logout()">
+          <ion-icon name="log-out" slot="start" style="color: white;"></ion-icon>
+          Logout
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content"></ion-router-outlet>
 </ion-app>

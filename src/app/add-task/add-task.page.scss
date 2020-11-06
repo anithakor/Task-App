@@ -1,0 +1,40 @@
+// ion-content {
+//     --background: url("../../assets/bg1.png") 0 0/100% 100% no-repeat;
+// }
+.container {
+    height: 70vh;
+    padding: 5vh 5vw;
+    color: white;
+    background: url("../../assets/bg1.png") 0 0/100% 100% no-repeat;
+}
+ion-item {
+    --background: transparent;
+    --color: white;
+    --border-color: white;
+    --padding-end: 0px;
+    --inner-padding-end: 0px;
+}
+.priority-btn {
+    margin: 5px;
+    border-radius: 15px;
+}
+.priority-lbl {
+    text-align: center;
+    padding: 5px;
+    margin: 0px;
+}
+
+.select-btn {
+    background: white;
+    color: #2f58e2;
+}
+ion-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 5vh;
+    --background: transparent !important;
+}
+.task-button {
+    --background: white;
+    --color: #2f58e2;
+}

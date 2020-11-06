@@ -1,27 +1,63 @@
-#container {
+.header {
+  padding: 0 5vw;
+}
+.segment {
+  padding: 0 5vw;
+}
+.common {
+  padding: 3vh 5vw;
+  min-height: 50vh;
+}
+.segment-all {
+  background: url("../../assets/Group10456.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.segment-completed {
+  background: url("../../assets/Group10446.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.segment-incompleted {
+  background: url("../../assets/Group10445.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+ion-label {
+  text-transform: none;
+}
+ion-footer {
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 20px;
+}
+.task-button {
+  border-radius: 10px;
+}
+.tasklist {
+  background: transparent;
+}
+.task-card {
+  padding: 10px 10px;
+  border-radius: 30px;
+  margin: 10px;
+}
+.task-label {
+  border-left: 2px solid black;
+  padding-left: 10px;
+}
+ion-checkbox {
+  --size: 25px;
+  margin-right: 20px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
+// .radio .radio-icon:before {
+//   content: "" !important;
+//   border: 2px solid black !important;
+//   width: 24px !important;
+//   height: 24px !important;
+//   border-radius: 5px !important;
+//   overflow: hidden !important;
+// }

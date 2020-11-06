@@ -1,0 +1,18 @@
+ion-menu {
+    --ion-text-color: var(--ion-color-primary-contrast);
+    --background: url("../assets/bg-1.png") 0 0/100% 100% no-repeat;;
+    --ion-background-color: transparent;
+    ion-list {
+        /* optional, but it needs when you use gradient as a background color.*/
+        background: transparent;
+    }
+    ion-content {
+        --background: transparent;
+    }
+    ion-item {
+        --background: transparent;
+    }
+    ion-toolbar {
+        --background: transparent;
+    }
+}
